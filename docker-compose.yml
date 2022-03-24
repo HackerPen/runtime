@@ -1,0 +1,18 @@
+version: "3.7"
+services:
+  runtime:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - .:/app/runtime
+    ports:
+      - "9494:9494"
+    stdin_open: true
+    networks:
+      - os-hackerpen-network-local
+    tty: true
+    command: /app/runtime/bin/server
+networks:
+  os-hackerpen-network-local:
+    name: os_hackerpen_network_local

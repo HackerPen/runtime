@@ -1,0 +1,3 @@
+#!/bin/bash
+
+su hackerpen -c "ruby app.rb"

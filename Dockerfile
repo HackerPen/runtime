@@ -12,6 +12,15 @@ RUN apk add --no-cache go
 RUN apk add --no-cache g++
 # install Java
 RUN apk add --no-cache openjdk11
+# install Kotlin
+RUN apk add --no-cache -t build-dependencies wget && \
+    cd /usr/lib && \
+    wget https://github.com/JetBrains/kotlin/releases/download/v1.6.10/kotlin-compiler-1.6.10.zip && \
+    unzip kotlin-compiler-*.zip && \
+    rm kotlin-compiler-*.zip && \
+    rm kotlinc/bin/*.bat && \
+    apk del --no-cache build-dependencies
+ENV PATH $PATH:/usr/lib/kotlinc/bin
 # install Javascript
 RUN apk add --no-cache nodejs
 
@@ -28,3 +37,4 @@ RUN chown hackerpen:hackerpen -R /app/runtime
 
 RUN gem install bundler
 RUN bundle install
+CMD bash -c "bin/server"

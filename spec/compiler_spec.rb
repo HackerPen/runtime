@@ -69,7 +69,7 @@ describe Compiler do
       }
     CODE
     output = described_class.run('access_code', 'c', code)
-    expect(output).to eq("hello world this is c")
+    expect(output).to eq('hello world this is c')
   end
 
   it 'compiles c++' do
@@ -83,7 +83,7 @@ describe Compiler do
       }
     CODE
     output = described_class.run('access_code', 'cpp', code)
-    expect(output).to eq("hello world this is cpp")
+    expect(output).to eq('hello world this is cpp')
   end
 
   it 'compiles javascript' do
@@ -96,6 +96,19 @@ describe Compiler do
 
     output = described_class.run('access_code', 'javascript', code)
     expect(output).to eq("2\n")
+  end
+
+  it 'compiles kotlin' do
+    code = <<~CODE
+      package io.hackerpen
+      fun main() {
+        println("hello world this is kotlin")
+      }
+    CODE
+
+    # set super long timeout in case it fails
+    output = described_class.run('access_code', 'kotlin', code)
+    expect(output).to eq("hello world this is kotlin\n")
   end
 
   it 'outputs timeout' do

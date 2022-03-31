@@ -12,7 +12,6 @@ services:
     networks:
       - os-hackerpen-network-local
     tty: true
-    command: /app/runtime/bin/server
 networks:
   os-hackerpen-network-local:
     name: os_hackerpen_network_local

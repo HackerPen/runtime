@@ -1,4 +1,4 @@
-FROM ruby:alpine
+FROM alpine:latest
 RUN apk update && apk add bash
 # install Ruby3
 RUN apk add --no-cache ruby-dev
@@ -26,4 +26,5 @@ RUN mkdir /hackerpen
 RUN chown hackerpen:hackerpen -R /hackerpen
 RUN chown hackerpen:hackerpen -R /app/runtime
 
+RUN gem install bundler
 RUN bundle install

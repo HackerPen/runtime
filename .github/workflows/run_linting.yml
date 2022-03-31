@@ -12,5 +12,5 @@ jobs:
       - uses: actions/checkout@v2
       - name: build docker-compose
         run: docker-compose up -d
-      - name: run tests
+      - name: run linting
         run: docker-compose exec -T runtime /bin/bash -c 'rubocop'

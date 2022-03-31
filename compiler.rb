@@ -22,6 +22,7 @@ class Compiler
   LANG_TO_EXTENSION = {
     'java' => 'java',
     'javascript' => 'js',
+    'kotlin' => 'kt',
     'python3' => 'py',
     'python' => 'py',
     'ruby' => 'rb',
@@ -32,6 +33,9 @@ class Compiler
 
   TIMEOUT_SECONDS = 10
   # rubocop:disable Metrics/AbcSize
+  # rubocop:disable Layout/LineLength
+  # rubocop:disable Metrics/CyclomaticComplexity
+  # rubocop:disable Metrics/PerceivedComplexity
   def self.run(access_code, lang, code)
     extension = LANG_TO_EXTENSION[lang]
     directory = access_code.encrypt
@@ -50,6 +54,9 @@ class Compiler
           stdout, stderr, _status = Open3.capture3("go run #{filename}")
         elsif lang == 'javascript'
           stdout, stderr, _status = Open3.capture3("node #{filename}")
+        elsif lang == 'kotlin'
+          jar_path = "/hackerpen/#{directory}/solution.jar"
+          stdout, stderr, _status = Open3.capture3("kotlinc #{filename} -d #{jar_path}; java -jar #{jar_path}")
         elsif lang == 'cpp'
           stdout, stderr, _status = Open3.capture3("g++ #{filename} -o /hackerpen/#{directory}/solution; cd /hackerpen/#{directory}; ./solution")
         elsif lang == 'c'
@@ -70,5 +77,8 @@ class Compiler
     FileUtils.rm_rf("/hackerpen/#{directory}")
   end
   # rubocop:enable Metrics/AbcSize
+  # rubocop:enable Layout/LineLength
+  # rubocop:enable Metrics/CyclomaticComplexity
+  # rubocop:enable Metrics/PerceivedComplexity
 end
 # rubocop:enable Metrics/MethodLength

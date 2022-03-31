@@ -98,6 +98,19 @@ describe Compiler do
     expect(output).to eq("2\n")
   end
 
+  it 'compiles kotlin' do
+    code = <<~CODE
+      package io.hackerpen
+      fun main() {
+        println("hello world this is kotlin")
+      }
+    CODE
+
+    # set super long timeout in case it fails
+    output = described_class.run('access_code', 'kotlin', code)
+    expect(output).to eq("hello world this is kotlin\n")
+  end
+
   it 'outputs timeout' do
     code = <<-CODE
       while true do

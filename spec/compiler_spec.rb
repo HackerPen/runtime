@@ -69,7 +69,7 @@ describe Compiler do
       }
     CODE
     output = described_class.run('access_code', 'c', code)
-    expect(output).to eq("hello world this is c")
+    expect(output).to eq('hello world this is c')
   end
 
   it 'compiles c++' do
@@ -83,7 +83,7 @@ describe Compiler do
       }
     CODE
     output = described_class.run('access_code', 'cpp', code)
-    expect(output).to eq("hello world this is cpp")
+    expect(output).to eq('hello world this is cpp')
   end
 
   it 'compiles javascript' do

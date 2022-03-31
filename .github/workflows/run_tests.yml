@@ -13,4 +13,4 @@ jobs:
       - name: build docker-compose
         run: docker-compose up -d
       - name: run tests
-        run: docker-compose exec runtime /bin/bash -c 'rspec spec'
+        run: docker-compose exec -T runtime /bin/bash -c 'rspec spec'

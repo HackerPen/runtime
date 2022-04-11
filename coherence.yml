@@ -1,0 +1,12 @@
+backend:
+  type: backend
+  url_path: /
+  repo_path: "."
+  dev: ["bin/server"]
+  prod: ["bin/server"]
+
+  system:
+    dev:
+      port: 9494
+    memory: 2G
+    cpu: 1

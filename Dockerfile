@@ -24,6 +24,9 @@ ENV PATH $PATH:/usr/lib/kotlinc/bin
 # install Javascript
 RUN apk add --no-cache nodejs
 
+# install Rust
+RUN apk add --no-cache rust
+
 ENV APP_ENV="development"
 
 WORKDIR /app/runtime
